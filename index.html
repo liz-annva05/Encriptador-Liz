@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Liz</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body style="background-image: url('encriptador.jpg')">
+    <div class="presentacion">
+        <h1>Encriptador de Liz</h1>
+        
+    </div>
+
+    <label for="texto">Texto:</label>
+    <textarea id="texto-original" placeholder="Ingresa tu texto aquí"></textarea>
+
+    <button onclick=encriptar()>Encriptar</button>
+    <button id="desencriptar" onclick="desencriptar()">Desencriptar</button>
+
+    <label for="resultado">Resultado:</label>
+    <textarea id="resultado"></textarea>
+    <script>
+        // Documentación:
+        function encriptar()
+        {
+            const textoOriginal = document.getElementById('texto-original');
+            const textoEncriptado = document.getElementById('resultado');
+            var texto = textoOriginal.value;
+			var nuevoTexto = "";
+			
+			for (var i = 0; i < texto.length; i++)
+			{
+				if (texto[i] == "a")
+					nuevoTexto += "ai";
+					
+				else if (texto[i] == "e")
+					nuevoTexto += "enter";
+					
+				else if (texto[i] == "i")
+					nuevoTexto += "imes";
+					
+				else if (texto[i] == "o")
+					nuevoTexto += "ober";
+					
+				else if (texto[i] == "u")
+					nuevoTexto += "ufat";
+					
+				else
+					nuevoTexto += texto[i];
+			}
+			
+			console.log(nuevoTexto);
+
+            textoEncriptado.value = nuevoTexto;
+        }
+
+        function desencriptar()
+        {
+            const textoOriginal = document.getElementById('texto-original');
+            const textoEncriptado = document.getElementById('resultado');
+            var texto = textoOriginal.value;
+            
+            while(texto.includes("enter"))
+                texto=texto.replace("enter", "e");
+
+            while(texto.includes("imes"))
+                texto=texto.replace("imes", "i");
+
+            while(texto.includes("ai"))
+                texto=texto.replace("ai", "a");
+
+            while(texto.includes("ober"))
+                texto=texto.replace("ober", "o");
+
+            while(texto.includes("ufat"))
+                texto=texto.replace("ufat", "u");
+
+            textoEncriptado.value = texto;
+        }
+    </script>
+    
+</body>
+</html>
